@@ -1,6 +1,9 @@
 import requests
 import os
 from bs4 import BeautifulSoup
+import urllib
+import urllib2
+
 #directory="M:\group"
 forbiden=["<",">",":","/","\\","|","?","*"]
 url="http://www.bbc.co.uk"
@@ -37,16 +40,21 @@ for i in NewsTopicsLinks:
             #f=open(n+"\\"+nn+".txt","w")
                 
             #if it is Linux
-                
             f=open(n+"/"+nn+".txt","w")
+            paragraphList=[]
 
             for k in articleContext:
-                message=k.text.encode("utf-8")
-                f.write(message)
+                #me=k.text.encode("utf-8")
+                
+                for q in k.find_all("p"):
+                    f.write(q)
+                    
+                images =k.find_all("img",{"class":"js-image-replace"})
+                for image in images:
+                    urllib.urlretrieve(image['src'], filename=n+"/"+nn+image['alt'])
+                    print(image['src'])
+                
+            print("----------------------------------------------")
             f.close()
             
     count=count+1
-                
-                
-                      
-        
