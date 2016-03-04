@@ -4,25 +4,25 @@ import boto3
 dynamodb = boto3.resource('dynamodb', region_name='us-west-2a')#, endpoint_url="http://localhost:8000") 
 
 table = dynamodb.create_table(
-    TableName='Articles',
+    TableName='articles',
     KeySchema=[
         {
-            'AttributeName': 'Title',
+            'AttributeName': 'title',
             'KeyType': 'HASH'  #Partition key
         },
         {
-            'AttributeName': 'Category',
+            'AttributeName': 'category',
             'KeyType': 'RANGE'  #Sort key
         }
 
     ],
     AttributeDefinitions=[
         {
-            'AttributeName': 'Title',
+            'AttributeName': 'title',
             'AttributeType': 'S'
         },
                 {
-            'AttributeName': 'Category',
+            'AttributeName': 'category',
             'AttributeType': 'S'
         }
 

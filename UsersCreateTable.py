@@ -7,11 +7,11 @@ table = dynamodb.create_table(
     TableName='users',
     KeySchema=[
         {
-            'AttributeName': 'Email',
+            'AttributeName': 'email',
             'KeyType': 'HASH'  #Partition key
         },
         {
-            'AttributeName': 'Username',
+            'AttributeName': 'username',
             'KeyType': 'RANGE'  #Sort key
         }
 
