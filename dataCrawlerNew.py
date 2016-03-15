@@ -17,6 +17,7 @@ NewsTopicsLinks=[]
 client = MongoClient()
 db = client.articles
 collection = db.articles_collection
+db.articles_collection.drop()
 dictionary={}
 #dynamodb = boto3.resource('dynamodb', region_name='us-west-2', endpoint_url="http://localhost:8000")
 #table = dynamodb.Table('articles')
@@ -72,9 +73,10 @@ while True:
                         images =k.find_all("img",{"class":"js-image-replace"})
                         imagename=""
                         for image in images:
-                            urllib.urlretrieve(image['src'], filename="/home/panagiotis/Documents/ceGroup Project/Group6project/images/"+str(countname))
-                            imagename=image['alt']
-                        countname=countname+1
+                            #urllib.urlretrieve(image['src'], filename="/home/panagiotis/Documents/ceGroup Project/Group6project/images/"+str(countname))
+                            imagename=str(image['src']).replace('/320/','/660/')
+                            
+                        #countname=countname+1
                            
                         dictionary={'category':category,
                                     'title': title,
